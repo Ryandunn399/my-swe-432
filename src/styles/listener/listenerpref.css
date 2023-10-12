@@ -6,6 +6,12 @@
     border-radius: 5px;
     flex-direction: column;
     box-shadow: 2px 0px 10px 2px black;
+    height: 100%;
+}
+
+#fav-btn {
+    background: transparent;
+    border-style: none;
 }
 
 .pref-text {
@@ -40,4 +46,3 @@
 .pref-div:hover {
     background-color: var(--background-tinted-highlight);
 }
-

@@ -49,6 +49,14 @@ button:hover {
     color:var(--text-base);
 }
 
+nav {
+    background-color: var(--background-base);
+    color: var(--text-base);
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
 .md-34 {
     font-size: 3rem !important;
 }

@@ -73,9 +73,9 @@
                         <div class="search-content">
     
                             <div class="search-text">Search</div>
-                            <form>
+                            <form id="search-form">
                                 <div class="search-bar">
-                                    <input type="text" placeholder="Search" class="search-input">
+                                    <input id="search-value" type="text" placeholder="Search" class="search-input">
                                     <button type="submit" class="search-button">
                                         <span class="material-symbols-outlined">
                                             search
@@ -84,67 +84,21 @@
                             </form>
                             </div>
     
-                            <div class="list-div">
-                                <div class="heading-text live">Live Now</div>
-    
-                                <div class="dj-info-div">
-                                    <img src="../../images/icons/dj-icon.png" />
-    
-                                    <div class="dj-info-text">
-                                        <div class="dj-info-ti">DJ Name</div>
-                                        <div class="dj-info-ti">Description</div>
-                                    </div>
-                                </div>
-    
-                                <div class="dj-info-div">
-                                    <img src="../../images/icons/dj-icon.png" />
-    
-                                    <div class="dj-info-text">
-                                        <div class="dj-info-ti">DJ Name</div>
-                                        <div class="dj-info-ti">Description</div>
-                                    </div>
-                                </div>
-    
-                                <div class="dj-info-div">
-                                    <img src="../../images/icons/dj-icon.png" />
-    
-                                    <div class="dj-info-text">
-                                        <div class="dj-info-ti">DJ Name</div>
-                                        <div class="dj-info-ti">Description</div>
-                                    </div>
+                            <div class="list-div-wrapper">
+                                <div class="heading-text DJs">Live Now</div>
+
+                                <div id="live-dj-list">
+                                    <!-- JS VALUES WILL LOAD HERE -->
                                 </div>
                             </div>
     
                             <hr>
     
-                            <div class="list-div">
+                            <div class="list-div-wrapper">
                                 <div class="heading-text DJs">DJs</div>
     
-                                <div class="dj-info-div">
-                                    <img src="../../images/icons/dj-icon.png" />
-    
-                                    <div class="dj-info-text">
-                                        <div class="dj-info-ti">DJ Name</div>
-                                        <div class="dj-info-ti">Description</div>
-                                    </div>
-                                </div>
-    
-                                <div class="dj-info-div">
-                                    <img src="../../images/icons/dj-icon.png" />
-    
-                                    <div class="dj-info-text">
-                                        <div class="dj-info-ti">DJ Name</div>
-                                        <div class="dj-info-ti">Description</div>
-                                    </div>
-                                </div>
-    
-                                <div class="dj-info-div">
-                                    <img src="../../images/icons/dj-icon.png" />
-    
-                                    <div class="dj-info-text">
-                                        <div class="dj-info-ti">DJ Name</div>
-                                        <div class="dj-info-ti">Description</div>
-                                    </div>
+                                <div id="dj-list">
+                                    <!-- JS VALUES WILL LOAD HERE -->
                                 </div>
                             </div>
                         </div>
@@ -171,9 +125,9 @@
                                 </div>
         
                                 <div class="music-bar-func">
-                                    <span class="material-symbols-outlined md-34 fav-icon">
+                                    <button id="fav-btn" class="material-symbols-outlined md-34 fav-icon">
                                         favorite
-                                    </span>
+                                    </button>
                                 </div>
         
                             </div>
@@ -184,5 +138,8 @@
                 </div>
             </main>
         </div>
+
+        <script src="../../scripts/listener/search.js"></script>
+        <script src="../../scripts/listener/listener.js"></script>
     </body>
 </html>
