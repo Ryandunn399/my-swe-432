@@ -24,15 +24,9 @@
     padding: 1rem;
 }
 
-.follower-info:hover {
-    border-style: solid;
-    border-width: 2px;
-    border-radius: 0.25rem;
-    border-color: var(--text-bright-accent);
-}
-
 .follower-info img {
-    width: 7rem;
+    max-width: 7rem;
+    max-height: 7rem;
 }
 
 .follower-info-text {
@@ -60,4 +54,11 @@ hr {
 #fav-btn {
     background: transparent;
     border-style: none;
+}
+
+.fav-page-btn {
+    background: transparent;
+    border-style: none;
+    margin-left: auto;
+    order: 2;
 }

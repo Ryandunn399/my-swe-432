@@ -75,8 +75,8 @@
                             <div class="pref-text">Add Preference</div>
     
                             <div class="pref-bar">
-                                <form>
-                                    <input type="text" placeholder="" class="pref-input">
+                                <form id="pref-form">
+                                    <input type="text" placeholder="" id="pref-input" class="pref-input">
     
                                     <button type="submit" class="add-button">
                                         Add
@@ -84,41 +84,9 @@
                                 </form>
                             </div>
     
-                            <div class="pref-container">
-                                <div class="pref-div">
-                                    Preference One
-                                </div>
-    
-                                <div class="pref-div">
-                                    Preference Two
-                                </div>
-    
-                                <div class="pref-div">
-                                    Preference Three
-                                </div>
-    
-                                <div class="pref-div">
-                                    Preference Four
-                                </div>
-    
-                                <div class="pref-div">
-                                    Preference Five
-                                </div>
-    
-                                <div class="pref-div">
-                                    Preference Six
-                                </div>
-    
-                                <div class="pref-div">
-                                    Preference Seven
-                                </div>
-    
-                                <div class="pref-div">
-                                    Preference Eight
-                                </div>
+                            <div id='pref-wrapper' class="pref-container">
+                                
                             </div>
-    
-                            
                         </div>
     
                         
@@ -154,5 +122,6 @@
             </main>
         </div>
         <script src="../../scripts/listener/listener.js"></script>
+        <script src="../../scripts/listener/preferences.js"></script>
     </body>
 </html>

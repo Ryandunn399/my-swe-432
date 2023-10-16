@@ -41,8 +41,10 @@
     box-shadow: 1px 1px 1px 1px black;
     margin: 0rem 0.5rem 1rem 0rem;
     cursor: pointer;
+    color: white;
+    transition: transform 300ms ease-in-out;
 }
 
 .pref-div:hover {
-    background-color: var(--background-tinted-highlight);
+    transform: scale(1.03);
 }

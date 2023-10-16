@@ -103,5 +103,5 @@ searchForm.addEventListener("submit", (e) => {
 
     // Load new values
     loadValues(liveList, searchValue, 'database_live')
-    loadValues(djList, searchValue, 'database')
+    loadValues(djList, searchValue, 'database_djs')
 })
