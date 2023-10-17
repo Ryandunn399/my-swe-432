@@ -40,7 +40,7 @@ const djElement = (name, desc, imgUrl) => {
 }
 
 /**
- * Read our json file that is current our "database"
+ * Read our json file that is currently our "database"
  * 
  * @returns a JSON array of mock DJ names.
  */
@@ -72,9 +72,15 @@ function loadValues(htmlElement, searchValue, dbName) {
             const name = element.name.toLowerCase();
             const category = element.category.toLowerCase();
 
+            element.name = element.name + "!"
+            element.redundantValue = "Cheese Grater"
+
             if (name.includes(searchValue.toLowerCase()) || category.includes(searchValue.toLowerCase())) {
                 const newElement = djElement(element.name, element.description, element.imgUrl)
                 htmlElement.appendChild(newElement)
+
+                // To provide proof the JSON object had new property appended.
+                console.log(redundantValue)
             }
         })
     })
@@ -105,3 +111,7 @@ searchForm.addEventListener("submit", (e) => {
     loadValues(liveList, searchValue, 'database_live')
     loadValues(djList, searchValue, 'database_djs')
 })
+
+setTimeout(() => {
+    console.log("Hello, this message will be displayed 2 seconds after loading.")
+}, 2000)
