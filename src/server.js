@@ -17,6 +17,6 @@ app.use(express.static(path.join(__dirname, 'public')))
 
 app.use('/', listenerRoutes)
 
-app.listen(8080, () => {
-    console.log('Server has started!')
+app.listen(port, () => {
+    console.log(`Server has started on port ${port}`)
 })

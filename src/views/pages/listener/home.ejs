@@ -11,14 +11,7 @@
 
     <body class = "encore-dark-theme">
 
-        <nav>
-            <img src="../../images/logo-placeholder-image.png" class="navBarLogo" />
-            <div class="navBarControls">
-                <div class="navBarControls_option active">Listen</div>
-                <div class="navBarControls_option">Produce</div>
-                <div class="navBarControls_option">DJ</div>
-            </div>
-        </nav>
+        <%- include('../../partials/navbar.ejs') %>
 
         <div class="content">
             <div class="pageHeader">
@@ -31,42 +24,7 @@
             <main>
                 <div class="listen-content">
                 
-                    <div class="sidebar">
-                        <ul class="sidebar-buttons">
-                            <li>
-                                <div class="side-button active">
-                                    <span class="material-symbols-outlined md-34">
-                                        home
-                                    </span>
-                                    <a href="listenerHome.html">Home</a>
-                                </div>  
-                            </li>
-                            <li>
-                                <div class="side-button">
-                                    <span class="material-symbols-outlined md-34">
-                                        search
-                                    </span>
-                                    <a href="listenerSearch.html">Search</a>
-                                </div>  
-                            </li>
-                            <li>
-                                <div class="side-button">
-                                    <span class="material-symbols-outlined md-34">
-                                        settings
-                                    </span>
-                                    <a href="listenerPreferences.html">Preferences</a>
-                                </div>  
-                            </li>
-                            <li>
-                                <div class="side-button">
-                                    <span class="material-symbols-outlined md-34">
-                                        supervisor_account
-                                    </span>
-                                    <a href="listenerFollowers.html">Following</a>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
+                    <%- include('../../partials/listener/sidebar.ejs') %>                  
     
                     <div class="main-content">
                         <div class="home-content">
@@ -194,6 +152,8 @@
                 </div>
             </main>
         </div>
+
+        <% include('../../partials/footer.ejs') %>
 
         <script src="../../scripts/listener/home.js"></script>
         <script src="../../scripts/listener/listener.js"></script>

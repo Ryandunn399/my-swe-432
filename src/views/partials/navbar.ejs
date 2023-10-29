@@ -1,0 +1,14 @@
+<link rel="stylesheet" href="/css/navbar.css" />
+<div class="navbar">
+    <img src="/images/logo-placeholder-image.png" class="navBarLogo" />
+    <div class="navBarControls">
+
+        <% navOptions.routes.forEach((v) => { %>
+            <% if (v === navOptions.route){%>
+                <div class="navBarControls_option active"><%= v %></div>
+            <%}else{%>
+                <div class="navBarControls_option"><%= v %></div>
+            <%}%>
+        <%})%>
+    </div>
+</div>
