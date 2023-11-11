@@ -45,7 +45,7 @@ const djElement = (name, desc, imgUrl) => {
  * @returns a JSON array of mock DJ names.
  */
 async function database(dbName) {
-    const res = await fetch(`../../data/${dbName}.json`);
+    const res = await fetch(`/api/djs`);
     return await res.json();
 }
 

@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 
-const navOptions  = {
+const listenNavOptions  = {
     route: 'Listener',
     routes: [
         'Listener',
@@ -10,20 +10,60 @@ const navOptions  = {
     ]
 }
 
-router.get('/listener', (req, res) => {
-    res.render('pages/listener/home', { currPage: 'home', navOptions: navOptions, pp: 'pp'})
+const accountNavOptions  = {
+    route: 'Login',
+    routes: [
+        'Listener',
+        'DJ',
+        'Producer'
+    ]
+}
+
+// middleware to test if authenticated
+const isAuthenticated = (req, res, next) => {
+    if (req.session.userid){
+        next()
+    } else {
+        res.redirect('/pages/login')
+    }
+}
+
+router.get('/', (req, res) => {
+    if (req.session.userid) {
+        res.redirect('/pages/listener')
+        return
+    }
+
+    res.redirect('/pages/login')
 })
 
-router.get('/listener/search', (req, res) => {
-    res.render('pages/listener/search', { currPage: 'search', navOptions: navOptions})
+router.get('/login', (req, res) => {
+    if (req.session.userid) {
+        res.redirect('/pages/account')
+        return
+    }
+
+    res.render('pages/login', { currPage: 'login'})
 })
 
-router.get('/listener/preferences', (req, res) => {
-    res.render('pages/listener/preferences', { currPage: 'preferences', navOptions: navOptions})
+router.get('/account', isAuthenticated, (req, res) => {
+    res.render('pages/account', { user: req.session.username, navOptions: accountNavOptions })
 })
 
-router.get('/listener/followers', (req, res) => {
-    res.render('pages/listener/followers', { currPage: 'followers', navOptions: navOptions})
+router.get('/listener', isAuthenticated, (req, res) => {
+    res.render('pages/listener/home', { currPage: 'home', navOptions: listenNavOptions})
+})
+
+router.get('/listener/search', isAuthenticated, (req, res) => {
+    res.render('pages/listener/search', { currPage: 'search', navOptions: listenNavOptions})
+})
+
+router.get('/listener/preferences', isAuthenticated, (req, res) => {
+    res.render('pages/listener/preferences', { currPage: 'preferences', navOptions: listenNavOptions})
+})
+
+router.get('/listener/followers', isAuthenticated, (req, res) => {
+    res.render('pages/listener/followers', { currPage: 'followers', navOptions: listenNavOptions})
 })
 
 module.exports = router

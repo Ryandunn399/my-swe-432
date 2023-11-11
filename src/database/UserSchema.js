@@ -11,6 +11,21 @@ const userSchema = new mongoose.Schema({
     password: {
         type: String,
         required: true
+    },
+    
+    following: {
+        type: [String],
+        default: 
+        [
+            "654c529632a91e44e1d25c15",
+            "654c529632a91e44e1d25c16", 
+            "654c529632a91e44e1d25c17"
+        ]
+    },
+
+    preferences: {
+        type: [String],
+        default: ["Aria"]
     }
 })
 

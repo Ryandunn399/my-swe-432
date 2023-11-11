@@ -1,5 +1,7 @@
 const mongoose = require('mongoose')
-const User = require('./userc')
+
+const User = require('./UserSchema')
+const Dj = require('./DjSchema')
 
 // Process .env file
 require('dotenv').config()
@@ -12,7 +14,6 @@ const dbName = process.env.DB_NAME
 
 // Function to establish connection with MongoDB database.
 connectDatabase = async() => {
-    console.log(`${dbName}`)
     await mongoose.connect(
         `mongodb://${dbIp}/${dbName}`,
         {
@@ -34,5 +35,74 @@ createUser = async(user, pass) => {
     }
 }
 
+verifyConnected = () => {
+    console.log(mongoose.connection.readyState)
+}
 
-module.exports = { connectDatabase, createUser }
+verifyUserExist = async(user) => {
+    const doc = await User.findOne({ username: user })
+
+    if (doc === null) {
+        return false
+    }
+
+    return true
+}
+
+retrieveUser = async(user, pass) => {
+    
+    const doc = await User.findOne({ username: user, password: pass })
+
+    if (doc === null) {
+        return null
+    }
+
+    return doc
+}
+
+retrieveUserNoPass = async(user) => {
+    const doc = await User.findOne({ username: user })
+
+    if (doc === null) {
+        return null
+    }
+
+    return doc
+}
+
+retrieveAllDjs = async() => {
+    const doc = await Dj.find()
+    return doc
+}
+
+retrieveDjsByName = async(name) => {
+    const doc = await Dj.find({ name: name })
+
+    if (doc == null) {
+        return JSON.stringify({})        
+    }
+
+    return doc
+}
+
+updateFollowers = async(user, arr) => {
+    const doc = await User.findOneAndUpdate({ username: user }, { following: arr })
+
+    if (doc === null) {
+        return null
+    }
+
+    return doc
+}
+
+module.exports = { 
+    connectDatabase,
+    createUser, 
+    verifyUserExist, 
+    verifyConnected, 
+    retrieveUser,
+    retrieveUserNoPass, 
+    retrieveDjsByName,
+    retrieveAllDjs,
+    updateFollowers
+}

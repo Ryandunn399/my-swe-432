@@ -2,9 +2,15 @@
     background-color: var(--background-base);
     color: var(--text-base);
     display:flex;
-    justify-content: space-between;
+    justify-content: center;
+    align-items: center;
     text-align: center;
     margin-left: auto;
     margin-right: auto;
     padding: 10px;
+}
+
+a {
+    padding-left: 2rem;
+    padding-right: 2rem;
 }

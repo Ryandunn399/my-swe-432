@@ -42,8 +42,8 @@ const followComponent = (name, desc, imgUrl, i) => {
  * 
  * @returns a JSON array of mock DJ names.
  */
-async function database(dbName) {
-    const res = await fetch(`../../data/${dbName}.json`);
+async function database() {
+    const res = await fetch('/api/djs');
     return await res.json();
 }
 
@@ -54,7 +54,7 @@ const followListDiv = document.getElementById('follow-wrapper')
  */
 following = []
 
-function reloadPage () {
+function reloadPage() {
     followListDiv.innerHTML = ''
 
     for (let i = 0; i < following.length; i++) {
@@ -69,6 +69,8 @@ function reloadPage () {
         const hr = document.createElement('hr')
         followListDiv.append(hr)
     }
+
+
 
     generateListeners()
 }
@@ -96,19 +98,40 @@ function generateListeners() {
             console.log(following)
             following.splice(parseInt(id.slice(-1)), 1)
 
+            // Update our database.
+            fetch('/users/update-followers', {
+                method: 'POST',
+                headers: {
+                    'content-type': 'application/json'
+                },
+
+                body: JSON.stringify({
+                    following: following
+                })
+            }).then(e => console.log('oi'))
+
             reloadPage()
         })
     })
 
 }
 
-async function loadFollowers () {
-    await database('database_followers').then((data) => {
+async function retrieveFollowed() {
+    const res = await fetch('/users/followers')
+    return res.json()
+}
+
+async function loadFollowers() {
+    const followingDb = await retrieveFollowed()
+    await database().then((data) => {
 
         data.forEach((element) => {
-            following = [...following, element]
+            const id = element._id.toString()
+            if (followingDb.includes(id)) {
+                following = [...following, element]
+            }
         })
-    
+
     })
 
     reloadPage()
