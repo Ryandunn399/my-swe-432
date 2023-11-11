@@ -28,7 +28,7 @@ const preferenceWrapper = document.getElementById('pref-wrapper')
  */
 function refreshValues() {
     preferenceWrapper.innerHTML = ''
-    
+
     for (let i = 0; i < preferences.length; i++) {
         const prefButton = prefElement(preferences[i], i)
         preferenceWrapper.appendChild(prefButton)
@@ -63,6 +63,19 @@ prefForm.addEventListener("submit", (e) => {
 
     textBar.value = ''
 
+    // Make call to update user in database
+    fetch('/users/update-prefs', {
+
+        method: "POST",
+        headers: {
+            'content-type': 'application/json'
+        },
+
+        body: JSON.stringify({
+            preferences: preferences
+        })
+    })
+
     refreshValues()
 })
 
@@ -72,15 +85,40 @@ prefForm.addEventListener("submit", (e) => {
 preferenceWrapper.addEventListener("click", (e) => {
     const value = e.target.innerHTML;
     const index = preferences.indexOf(value.toLowerCase())
-    
+
     if (index > -1) {
         preferences.splice(index, 1)
+
+        // Make call to update user in database
+        fetch('/users/update-prefs', {
+
+            method: "POST",
+            headers: {
+                'content-type': 'application/json'
+            },
+
+            body: JSON.stringify({
+                preferences: preferences
+            })
+        })
+
         refreshValues()
     }
 })
 
+async function retrievePreferences() {
+    const res = await fetch('/users/preferences')
+    return res.json()
+}
 
+async function loadValues() {
+    const prefs = await retrievePreferences() 
+    
+    prefs.forEach((element) => {
+        preferences = [...preferences, element.toLowerCase()]
+    })
+    
+    refreshValues()
+}
 
-
-
-
+loadValues()

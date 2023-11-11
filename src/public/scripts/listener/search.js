@@ -7,7 +7,7 @@
  * @returns a dj element
  */
 const djElement = (name, desc, imgUrl) => {
-    const infoText = document.createElement('button');
+    const infoText = document.createElement('div');
     infoText.className = "dj-info-div";
 
     // Generate image url
@@ -73,7 +73,6 @@ function loadValues(htmlElement, searchValue, dbName) {
             const category = element.category.toLowerCase();
 
             element.name = element.name + "!"
-            element.redundantValue = "Cheese Grater"
 
             if (name.includes(searchValue.toLowerCase()) || category.includes(searchValue.toLowerCase())) {
                 const newElement = djElement(element.name, element.description, element.imgUrl)

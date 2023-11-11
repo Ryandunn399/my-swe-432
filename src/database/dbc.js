@@ -95,6 +95,16 @@ updateFollowers = async(user, arr) => {
     return doc
 }
 
+updatePreferences = async(user, arr) => {
+    const doc = await User.findOneAndUpdate({ username: user }, { preferences: arr })
+
+    if (doc === null) {
+        return null
+    }
+
+    return doc
+}
+
 module.exports = { 
     connectDatabase,
     createUser, 
@@ -104,5 +114,6 @@ module.exports = {
     retrieveUserNoPass, 
     retrieveDjsByName,
     retrieveAllDjs,
-    updateFollowers
+    updateFollowers,
+    updatePreferences
 }

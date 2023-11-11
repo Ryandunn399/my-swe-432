@@ -68,13 +68,26 @@ router.get('/followers', isAuthenticated, (req, res) => {
     })
 })
 
+router.get('/preferences', isAuthenticated, (req, res) => {
+    const user = req.session.username
+
+    dbc.retrieveUserNoPass(user).then(resp => {
+        const preferences = resp.preferences
+        res.send(JSON.stringify(preferences))
+    })
+})
+
 router.post('/update-followers', isAuthenticated, (req, res) => {
     const user = req.session.username
-    console.log("hello!")
 
     const following = req.body.following
     console.log(following)
     const found = dbc.updateFollowers(user, following)
+})
+
+router.post('/update-prefs', isAuthenticated, (req, res) => {
+    const user = req.session.username
+    const found = dbc.updatePreferences(user, req.body.preferences)
 })
 
 // Debug method for creating user, not much going on here functionality wise here. 
