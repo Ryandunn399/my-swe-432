@@ -27,4 +27,4 @@ const djSchema = new mongoose.Schema({
         }
 })
 
-module.exports = mongoose.model("dj", djSchema)
+module.exports = djSchema

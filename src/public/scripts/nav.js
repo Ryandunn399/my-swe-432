@@ -21,5 +21,12 @@ if (actBtn != null) {
         // Update with account information as we develop sessions.
         window.location.assign('/pages/login')
     })
+}
 
+const producerButton = document.getElementById('nav-Producer')
+
+if (producerButton != null) {
+    producerButton.addEventListener("click", (e) => {
+        window.location.assign('/pages/producer')
+    })
 }

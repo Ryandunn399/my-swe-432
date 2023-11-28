@@ -1,12 +1,14 @@
 const express = require('express')
 const router = express.Router()
+const asyncHandler = require('express-async-handler')
+const ShowRepository = require('../database/repositories/showRepository')
 
 const listenNavOptions  = {
     route: 'Listener',
     routes: [
         'Listener',
-        'DJ',
-        'Producer'
+        'Producer',
+        'DJ'
     ]
 }
 
@@ -14,8 +16,17 @@ const accountNavOptions  = {
     route: 'Login',
     routes: [
         'Listener',
-        'DJ',
-        'Producer'
+        'Producer',
+        'DJ'
+    ]
+}
+
+const producerNavOptions  = {
+    route: 'Producer',
+    routes: [
+        'Listener',
+        'Producer',
+        'DJ'
     ]
 }
 
@@ -65,5 +76,22 @@ router.get('/listener/preferences', isAuthenticated, (req, res) => {
 router.get('/listener/followers', isAuthenticated, (req, res) => {
     res.render('pages/listener/followers', { currPage: 'followers', navOptions: listenNavOptions})
 })
+
+router.get('/producer', function (req, res) {
+    console.log('session date', req.session.filterShowDate);
+    res.render('pages/producer/producer', { filterDate: req.session.filterShowDate, navOptions: producerNavOptions });
+});
+
+router.get('/show/edit', function (req, res) {
+    res.render('pages/show/edit', { show: null, sessionDate: req.session.filterShowDate, navOptions: producerNavOptions });
+});
+
+router.route('/show/edit/:id')
+    .get(asyncHandler(async (req, res) => {
+        let show = await (new ShowRepository()).get(req.params.id);
+        console.log('got show', show);
+        res.render('pages/show/edit', { show, navOptions: producerNavOptions });
+    }));
+
 
 module.exports = router

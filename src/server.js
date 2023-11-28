@@ -5,11 +5,12 @@ const session = require('express-session')
 
 require('dotenv').config()
 
-const pageRoutes = require('./routes/PageRoutes')
-const userRoutes = require('./routes/UserRoutes')
-const apiRoutes = require('./routes/ApiRoutes')
+const pageRoutes = require('./routes/pages')
+const userRoutes = require('./routes/users')
+const apiRoutes = require('./routes/api')
 
-const dbc = require('./database/dbc')
+const dbConnection = require('./database/connection')
+const usc = require('./database/repositories/userRepository')
 
 const port = process.env.PORT
 
@@ -23,9 +24,7 @@ app.use(session({
     saveUninitialized: true,
 }))
 
-dbc.connectDatabase()
-
-
+dbConnection.connect(`${process.env.MONGO_CONNECTION_STRING}`)
 
 // Set the view engine to EJS
 app.set('view engine', 'ejs')

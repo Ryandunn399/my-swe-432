@@ -75,17 +75,20 @@ h1 {
     overflow: hidden;
     overflow-y: scroll;
     height: 16rem;
+    width: 40%;
+    align-items: center;
 }
 
 .event-listing {
     display:flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
     padding: 0.5rem 0.25rem;
     margin: 0.4rem;
     border: solid #000;
     border-width: 0.05rem;
     border-radius: 0.25rem;
+    width: 90%;
 }
 
 .listing-info {
@@ -93,8 +96,9 @@ h1 {
 }
 
 .listing-info-text {
-    padding: 0rem 2rem;
     color: var(--decorative-subdued);
+    padding-left: 2rem;
+    padding-right: 2rem;
 }
 
 .event-listing img {

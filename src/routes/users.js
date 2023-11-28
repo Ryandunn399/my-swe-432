@@ -1,12 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const dbc = require('../database/dbc')
-
-require('dotenv').config()
-
-const dbUser = process.env.DB_USER
-const dbPass = process.env.DB_PASS
-const dbIp = process.env.DB_IP
+const dbc = require('../database/repositories/userRepository')
 
 // middleware to test if authenticated
 const isAuthenticated = (req, res, next) => {
